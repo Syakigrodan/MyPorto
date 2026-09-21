@@ -19,9 +19,3 @@ Sebelum menjalankan proyek ini, pastikan komputer Anda telah terinstal:
 * Git
 
 ---
-
-## 📥 Panduan Instalasi (Development)
-
-1. **Clone repository ini ke komputer Anda:**
-   ```bash
-   git clone [https://github.com/Syakigrodan/MyPortofolio.git](https://github.com/Syakigrodan/MyPortofolio.git)
