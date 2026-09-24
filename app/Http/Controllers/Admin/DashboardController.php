@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Experience;
-use App\Models\Post;
+use App\Models\Certificate;
+use App\Models\ContactSubmission;
 use App\Models\Project;
 use App\Models\Skill;
 
@@ -13,14 +13,15 @@ class DashboardController
     {
         $stats = [
             'projects' => Project::count(),
-            'posts' => Post::count(),
             'skills' => Skill::count(),
-            'experiences' => Experience::count(),
+            'certificates' => Certificate::count(),
+            'contacts' => ContactSubmission::count(),
         ];
 
-        $latestPosts = Post::latest()->take(5)->get();
         $latestProjects = Project::latest()->take(5)->get();
+        $latestCertificates = Certificate::latest()->take(5)->get();
+        $latestContacts = ContactSubmission::latest()->take(5)->get();
 
-        return view('admin.dashboard', compact('stats', 'latestPosts', 'latestProjects'));
+        return view('admin.dashboard', compact('stats', 'latestProjects', 'latestCertificates', 'latestContacts'));
     }
 }

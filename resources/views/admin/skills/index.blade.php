@@ -5,17 +5,22 @@
 @section('content')
     <div class="mb-8">
         <h1 class="text-3xl font-extrabold text-white">Keahlian</h1>
-        <p class="mt-1 text-slate-400">Kelola daftar skill yang ditampilkan di halaman beranda dan tentang.</p>
+        <p class="mt-1 text-slate-400">Kelola tech stack yang ditampilkan di tab Tech Stack.</p>
     </div>
 
     <div class="glass glass-card mb-6 rounded-2xl p-6">
         <h2 class="mb-4 text-lg font-bold text-white">+ Tambah Keahlian</h2>
-        <form action="{{ route('admin.skills.store') }}" method="POST" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <form action="{{ route('admin.skills.store') }}" method="POST" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
             @csrf
             <input type="text" name="name" placeholder="Nama skill *" required
                    class="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition focus:border-indigo-400/60">
             <input type="text" name="icon" placeholder="Ikon (emoji)" maxlength="10"
                    class="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition focus:border-indigo-400/60">
+            <select name="category" required class="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition focus:border-indigo-400/60">
+                @foreach ($categories as $category)
+                    <option value="{{ $category }}">{{ $category }}</option>
+                @endforeach
+            </select>
             <input type="number" name="level" placeholder="Level 0-100" min="0" max="100" required
                    class="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition focus:border-indigo-400/60">
             <button type="submit" class="btn-primary rounded-xl px-5 py-2.5 text-sm font-semibold text-white">Simpan</button>
@@ -29,6 +34,7 @@
                 <tr class="border-b border-white/8 text-xs uppercase tracking-wider text-slate-500">
                     <th class="px-6 py-4">Ikon</th>
                     <th class="px-6 py-4">Nama</th>
+                    <th class="px-6 py-4">Kategori</th>
                     <th class="px-6 py-4">Level</th>
                     <th class="px-6 py-4">Urutan</th>
                     <th class="px-6 py-4">Aksi</th>
@@ -51,6 +57,14 @@
                                    class="w-full min-w-40 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white">
                         </td>
                         <td class="px-4 py-2">
+                            <select form="{{ $formId }}" name="category" required
+                                    class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category }}" @selected(old('category', $skill->category) === $category)>{{ $category }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td class="px-4 py-2">
                             <input type="number" form="{{ $formId }}" name="level" value="{{ old('level', $skill->level) }}" min="0" max="100" required
                                    class="w-20 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white">
                         </td>
@@ -71,7 +85,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-16 text-center text-slate-500">Belum ada keahlian.</td>
+                        <td colspan="6" class="px-6 py-16 text-center text-slate-500">Belum ada keahlian.</td>
                     </tr>
                 @endforelse
             </tbody>

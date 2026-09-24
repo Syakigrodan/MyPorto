@@ -44,6 +44,23 @@
 
     <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
+            <label for="category" class="mb-2 block text-sm font-medium text-slate-300">Kategori</label>
+            <input id="category" type="text" name="category" value="{{ old('category', $project?->category) }}"
+                   placeholder="Web App, Mobile, Backend, ..."
+                   class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition focus:border-indigo-400/60">
+            @error('category') <p class="mt-1 text-xs text-rose-400">{{ $message }}</p> @enderror
+        </div>
+        <div>
+            <label for="year" class="mb-2 block text-sm font-medium text-slate-300">Tahun</label>
+            <input id="year" type="number" name="year" value="{{ old('year', $project?->year) }}" min="2000" max="2100"
+                   placeholder="{{ date('Y') }}"
+                   class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition focus:border-indigo-400/60">
+            @error('year') <p class="mt-1 text-xs text-rose-400">{{ $message }}</p> @enderror
+        </div>
+    </div>
+
+    <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
             <label for="link" class="mb-2 block text-sm font-medium text-slate-300">Link Live</label>
             <input id="link" type="url" name="link" value="{{ old('link', $project?->link) }}" placeholder="https://..."
                    class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition focus:border-indigo-400/60">

@@ -8,18 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('skills', function (Blueprint $table) {
+        Schema::create('contact_submissions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('icon')->nullable();
-            $table->unsignedTinyInteger('level')->default(0);
-            $table->integer('sort_order')->default(0);
+            $table->string('email');
+            $table->text('message');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('skills');
+        Schema::dropIfExists('contact_submissions');
     }
 };

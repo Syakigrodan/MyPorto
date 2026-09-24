@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title', 'Dashboard') — Admin MyPortofolio</title>
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700,800" rel="stylesheet">
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/admin.css', 'resources/js/admin.js'])
     </head>
     <body class="min-h-screen antialiased">
         <div class="flex min-h-screen">
@@ -26,9 +26,8 @@
                         $adminNav = [
                             ['label' => 'Dashboard', 'route' => 'admin.dashboard', 'icon' => '📊'],
                             ['label' => 'Proyek', 'route' => 'admin.projects.index', 'icon' => '💼'],
-                            ['label' => 'Artikel', 'route' => 'admin.posts.index', 'icon' => '✍️'],
+                            ['label' => 'Sertifikat', 'route' => 'admin.certificates.index', 'icon' => '🏅'],
                             ['label' => 'Keahlian', 'route' => 'admin.skills.index', 'icon' => '🛠️'],
-                            ['label' => 'Pengalaman', 'route' => 'admin.experiences.index', 'icon' => '🧑‍💻'],
                         ];
                     @endphp
                     @foreach ($adminNav as $item)

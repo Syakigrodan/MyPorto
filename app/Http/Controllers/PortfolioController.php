@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
+use App\Models\Certificate;
 use App\Models\Project;
-use Illuminate\Support\Arr;
+use App\Models\Skill;
 
 class PortfolioController extends Controller
 {
     public function __invoke()
     {
-        $projects = Project::orderBy('sort_order')->paginate(9);
+        $projects = Project::orderBy('sort_order')->get();
 
-        $allTech = Project::all()
-            ->pluck('tech_stack')
-            ->flatten()
-            ->unique()
-            ->values()
-            ->sort();
+        $skills = Skill::orderBy('sort_order')->get();
 
-        return view('portfolio', compact('projects', 'allTech'));
+        $certificates = Certificate::orderByDesc('issued_date')->get();
+
+        $stats = [
+            ['value' => max($projects->count(), config('portfolio.stats.projects', 50)), 'suffix' => '+', 'label' => 'Projects Shipped'],
+            ['value' => config('portfolio.stats.satisfaction', 99), 'suffix' => '%', 'label' => 'Client Satisfaction'],
+            ['value' => config('portfolio.stats.years', 5), 'suffix' => '+', 'label' => 'Years Experience'],
+            ['value' => max($certificates->count(), config('portfolio.stats.certifications', 15)), 'suffix' => '+', 'label' => 'Certifications & Awards'],
+        ];
+
+        return view('index', compact('projects', 'skills', 'certificates', 'stats'));
     }
 }

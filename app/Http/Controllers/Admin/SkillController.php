@@ -11,8 +11,9 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Skill::orderBy('sort_order')->get();
+        $categories = Skill::CATEGORIES;
 
-        return view('admin.skills.index', compact('skills'));
+        return view('admin.skills.index', compact('skills', 'categories'));
     }
 
     public function store(Request $request)
@@ -20,6 +21,7 @@ class SkillController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'icon' => ['nullable', 'string', 'max:50'],
+            'category' => ['required', 'string', 'in:'.implode(',', Skill::CATEGORIES)],
             'level' => ['required', 'integer', 'between:0,100'],
             'sort_order' => ['nullable', 'integer'],
         ]);
@@ -36,6 +38,7 @@ class SkillController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'icon' => ['nullable', 'string', 'max:50'],
+            'category' => ['required', 'string', 'in:'.implode(',', Skill::CATEGORIES)],
             'level' => ['required', 'integer', 'between:0,100'],
             'sort_order' => ['nullable', 'integer'],
         ]);

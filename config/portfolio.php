@@ -2,26 +2,47 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Profil Portofolio
-    |--------------------------------------------------------------------------
-    | Ubah data di bawah ini sesuai dengan profil Anda.
-    */
-
     'name' => 'Syakirana Aurieli Pasa',
+    'brand' => 'Syakirana',
     'role' => 'Full-Stack Developer',
-    'tagline' => 'Membangun pengalaman digital yang modern, cepat, dan memukau.',
-    'about' => "Halo! Saya seorang pengembang web yang bersemangat menciptakan aplikasi dan website modern, responsif, serta berkinerja tinggi. Saya senang bereksperimen dengan teknologi baru dan selalu berusaha memberikan hasil terbaik untuk setiap proyek.",
+    'roles' => ['Full-Stack Developer', 'Laravel & Tailwind Artisan'],
+    'tagline' => 'Crafting digital products, scaling modern systems, with quiet precision.',
+    'about' => 'We partner with ambitious teams to ship ',
+    'about_highlight' => 'digital products, brand systems, and the strategy that holds them together.',
     'email' => 'syakiyowww@gmail.com',
     'phone' => '+62 812 3456 7890',
     'location' => 'Jakarta, Indonesia',
-    'resume_url' => null,
+    'resume_url' => '/cv/syakirana-cv.pdf',
     'socials' => [
         'github' => 'https://github.com/',
         'linkedin' => 'https://linkedin.com/in/',
-        'instagram' => 'https://instagram.com/',
         'twitter' => 'https://x.com/',
-        'youtube' => 'https://youtube.com/',
+        'dribbble' => 'https://dribbble.com/',
+        'instagram' => 'https://instagram.com/',
+    ],
+
+    'hero' => [
+        'eyebrow' => 'Independent Studio',
+        'beforeSrc' => 'https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/after.jpg',
+        'afterSrc' => 'https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/before.jpg',
+        'headline' => ['Bold ideas,', 'shipped with', 'quiet precision'],
+        'rating_text' => '50+ projects shipped',
+        'working_since' => 'Working since 2020',
+        'badges' => [
+            ['icon' => 'star', 'value' => '2+', 'label' => 'Years of Experience'],
+            ['icon' => 'circle-dot', 'value' => '20+', 'label' => 'Projects Delivered'],
+            ['icon' => 'globe', 'value' => '5+', 'label' => 'Countries Served'],
+        ],
+        'partners' => ['Kaido', 'Northpeak', 'Vellum', 'Orbit', 'Brightline', 'Cobalt', 'Mesa'],
+    ],
+
+    'stats' => [
+        'satisfaction' => 99,
+        'years' => 5,
+        'certifications' => 15,
+    ],
+
+    'music' => [
+        ['title' => 'Merry Christmas, i miss you', 'artist' => 'Alex Crichton', 'file' => '/audio/Alex%20Crichton%20-%20Merry%20Christmas,%20i%20miss%20you.mp3', 'image' => '/audio/Alex%20Crichton%20-%20Merry%20Christmas,%20i%20miss%20you.jpg'],
     ],
 ];
