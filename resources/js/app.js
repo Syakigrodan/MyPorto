@@ -118,6 +118,53 @@ function initClock() {
 }
 
 /* ============================================================
+   Typing role animation
+   ============================================================ */
+function initTyping() {
+    const el = document.getElementById('typed-role');
+    if (!el) return;
+
+    let words = [];
+    try {
+        words = JSON.parse(el.getAttribute('data-typing') || '[]');
+    } catch (err) {
+        words = [];
+    }
+    if (!words.length) return;
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const current = () => words[wordIndex];
+    el.textContent = '';
+
+    const typeInterval = () => {
+        const word = current();
+        if (deleting) {
+            charIndex -= 1;
+        } else {
+            charIndex += 1;
+        }
+
+        el.textContent = word.slice(0, charIndex);
+
+        let delay = deleting ? 45 : 100;
+        if (!deleting && charIndex === word.length) {
+            delay = 1600;
+            deleting = true;
+        } else if (deleting && charIndex === 0) {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            delay = 350;
+        }
+
+        setTimeout(typeInterval, delay);
+    };
+
+    setTimeout(typeInterval, 1200);
+}
+
+/* ============================================================
    Reveal system (IntersectionObserver)
    ============================================================ */
 let revealObserver = null;
@@ -836,6 +883,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-split-words]').forEach(splitWords);
 
     initClock();
+    initTyping();
     initReveals();
     initLoader();
 

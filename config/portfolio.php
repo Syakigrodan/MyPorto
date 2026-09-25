@@ -5,8 +5,8 @@ return [
     'name' => 'Syakirana Aurieli Pasa',
     'brand' => 'Syakirana',
     'role' => 'Full-Stack Developer',
-    'roles' => ['Full-Stack Developer', 'Laravel & Tailwind Artisan'],
-    'tagline' => 'Crafting digital products, scaling modern systems, with quiet precision.',
+    'roles' => ['Full-Stack Developer', 'Backend Architect', 'UI/UX Enthusiast'],
+    'tagline' => 'Membangun arsitektur backend yang tangguh, merancang antarmuka presisi, dan mewujudkan ide kompleks menjadi sistem digital yang fungsional.',
     'about' => 'We partner with ambitious teams to ship ',
     'about_highlight' => 'digital products, brand systems, and the strategy that holds them together.',
     'email' => 'syakiyowww@gmail.com',
@@ -22,7 +22,7 @@ return [
     ],
 
     'hero' => [
-        'eyebrow' => 'Independent Studio',
+        'eyebrow' => 'Full-Stack Engineer & Creator',
         'beforeSrc' => 'https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/after.jpg',
         'afterSrc' => 'https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/before.jpg',
         'headline' => ['Bold ideas,', 'shipped with', 'quiet precision'],
