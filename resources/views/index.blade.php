@@ -9,7 +9,7 @@
         </div>
         <div class="hero-vignette"></div>
 
-        <div class="hero-watermark" aria-hidden="true">{{ strtoupper(config('portfolio.brand')) }}</div>
+        <div class="hero-watermark" aria-hidden="true"></div>
 
         <div class="hero-grid shell">
             <div class="hero-col-left">
@@ -134,83 +134,121 @@
         </div>
 
         <div class="hero-status shell hero-reveal reveal" style="transition-delay:900ms">
-            <span>{{ config('portfolio.hero.working_since') }}</span>
-            <span class="hero-status-center">Remote-first, worldwide</span>
+            <span>Building since 2020</span>
+            <span class="hero-status-center">Full-Stack &amp; Backend Focused</span>
             <span class="hero-status-right"><span>Scroll to explore</span> ↓</span>
         </div>
     </section>
 
     {{-- ============ ABOUT ============ --}}
     <section id="about" class="about-section">
-        <div class="shell about-grid">
-            <div class="about-globe-block">
-                <div class="about-globe" aria-hidden="true">
-                    <svg style="width:1em;height:1em"><use href="#icon-globe"/></svg>
+        <div class="shell">
+            {{-- Bento grid --}}
+            <div class="bento">
+                {{-- Row 1: bio + photo --}}
+                <div class="bento-card bento-card--bio">
+                    <div class="bento-bio-inner">
+                        <p class="eyebrow reveal">Hello, I'm {{ config('portfolio.brand') }}</p>
+                        <h2 class="bento-h2 reveal reveal-up">
+                            <span data-split-words>HAI, SAYA {{ strtoupper(config('portfolio.name')) }}.</span>
+                        </h2>
+                        <p class="bento-text reveal reveal-up" style="transition-delay:120ms">{{ config('portfolio.about_intro') }}</p>
+                        <a class="btn-capsule btn-capsule--dark reveal reveal-up" style="transition-delay:220ms" href="{{ config('portfolio.resume_url') }}" download>
+                            <span>Unduh CV Lengkap</span>
+                            <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-download"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <p class="eyebrow reveal">The Studio</p>
-                <div class="distributed reveal reveal-up">
-                    <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-globe"/></svg>
-                    <span>A distributed team building across every time zone.</span>
-                </div>
-            </div>
 
-            <div class="about-statement">
-                <h2 class="about-h2">
-                    <span data-split-words>{{ config('portfolio.about') }}</span>
-                    <span data-split-words class="muted">{{ config('portfolio.about_highlight') }}</span>
-                </h2>
-
-                <div class="about-foot reveal reveal-up">
-                    <div>
-                        <p class="about-soc-label">Find us online</p>
-                        <div class="socials">
-                            @php
-                                $socials = collect(config('portfolio.socials'))->take(3);
-                            @endphp
-                            @foreach ($socials as $label => $url)
-                                <a class="social-chip {{ $loop->first ? 'social-chip--accent' : 'social-chip--soft' }}" href="{{ $url }}" target="_blank" rel="noopener" aria-label="{{ ucfirst($label) }}">
-                                    @if ($loop->first)
-                                        <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-x"/></svg>
-                                    @else
-                                        <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-circle-dot"/></svg>
-                                    @endif
-                                </a>
-                            @endforeach
+                <div class="bento-card bento-card--photo reveal reveal-up">
+                    <div class="profile-card">
+                        <div class="profile-photo">
+                            @if (config('portfolio.photo'))
+                                <img src="{{ config('portfolio.photo') }}" alt="{{ config('portfolio.name') }}">
+                            @else
+                                <div class="profile-photo-inner">
+                                    <span class="profile-ring profile-ring--outer"></span>
+                                    <span class="profile-ring profile-ring--inner"></span>
+                                    <span class="profile-initials">SP</span>
+                                </div>
+                            @endif
+                            <div class="profile-floatbar">
+                                <span class="profile-user">
+                                    <span class="profile-handle">{{ config('portfolio.handle') }}</span>
+                                    <span class="profile-online"><i></i> Online</span>
+                                </span>
+                                <button class="btn-float" type="button" data-modal-open>Rekrut Saya</button>
+                            </div>
                         </div>
                     </div>
-                    <a class="pill-btn pill-btn--outline" href="#about">
-                        <span class="pill-spring">
-                            <span class="pill-inner pill-inner--arrow">
-                                About Us
-                                <span class="pill-badge pill-badge--up">
-                                    <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-arrow-up-right"/></svg>
-                                </span>
-                            </span>
+                </div>
+
+                {{-- Row 2: education + tech stack --}}
+                <div class="bento-card bento-card--edu reveal reveal-up">
+                    <div class="edu-top">
+                        <span class="edu-icon">
+                            <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-graduation"/></svg>
                         </span>
-                    </a>
+                        <span class="chip chip--dark">{{ strtoupper(config('portfolio.education.badge')) }}</span>
+                    </div>
+                    <div class="edu-body">
+                        <p class="edu-school"><span aria-hidden="true">🏛</span> {{ strtoupper(config('portfolio.education.school')) }}</p>
+                        <h3 class="edu-major">{{ strtoupper(config('portfolio.education.major')) }}</h3>
+                    </div>
+                    <div class="edu-courses">
+                        <p class="edu-courses-label">Mata Kuliah Relevan:</p>
+                        <ul class="chip-list">
+                            @foreach (config('portfolio.education.courses') as $course)
+                                <li class="chip chip--soft">{{ $course }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="gpa-row">
+                        <span class="gpa-value">{{ config('portfolio.education.gpa') }}</span>
+                        <span class="gpa-meta">
+                            <span class="gpa-label">{{ strtoupper(config('portfolio.education.gpa_label')) }}</span>
+                            <span class="gpa-scale">/ 4.00 IPK</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-card--stack reveal reveal-up">
+                    <div class="stack-head">
+                        <span class="stack-icon">
+                            <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-terminal"/></svg>
+                        </span>
+                        <h3 class="bento-list-title">Tech Stack</h3>
+                    </div>
+                    @foreach (config('portfolio.tech_stack') as $group => $items)
+                        <div class="stack-group">
+                            <p class="stack-group-label">{{ $group }}</p>
+                            <ul class="chip-list">
+                                @foreach ($items as $item)
+                                    <li class="chip chip--soft">{{ $item }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="bento-card bento-card--focus reveal reveal-up">
+                    <div class="focus-body">
+                        <h3 class="focus-title">{{ strtoupper(config('portfolio.focus.title')) }}</h3>
+                        <p class="focus-text">{{ config('portfolio.focus.description') }}</p>
+                    </div>
+                    <ul class="focus-tags">
+                        @foreach (config('portfolio.focus.tags') as $tag)
+                            <li>
+                                <span class="focus-tag">
+                                    <svg style="width:1em;height:1em" aria-hidden="true"><use href="#icon-{{ $tag['icon'] }}"/></svg>
+                                    {{ $tag['label'] }}
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
-
-    {{-- ============ CREATEBAND ============ --}}
-    <section class="band">
-        <ul class="shell band-list">
-            <li class="band-item reveal reveal-up" style="transition-delay:0ms">
-                <span class="band-tile band-tile--light">We</span>
-            </li>
-            <li class="band-item reveal reveal-up" style="transition-delay:120ms">
-                <span class="band-tile band-tile--accent">Build</span>
-            </li>
-            <li class="band-item reveal reveal-up" style="transition-delay:240ms">
-                <span class="band-tile band-tile--dark" aria-hidden="true">
-                    <svg style="width:1em;height:1em"><use href="#icon-arrow-right"/></svg>
-                </span>
-            </li>
-            <li class="band-item reveal reveal-up" style="transition-delay:360ms">
-                <span class="band-tile band-tile--ghost">Better</span>
-            </li>
-        </ul>
     </section>
 
     {{-- ============ PORTFOLIO / WORKS ============ --}}
